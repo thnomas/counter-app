@@ -1,22 +1,57 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+from dataclasses import dataclass
+import datetime
 
 app = Flask(__name__)
 
-counter = {"count": 5, "max_count": 7}
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///testingdb.sqlite"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+@dataclass
+class Counter(db.Model):
+
+    count: int = db.Column(db.Integer, primary_key=True)
+    max_count: int = db.Column(db.Integer, nullable=False)
+    updated_at: datetime.datetime = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+    def __repr__(self):
+        return f'<Counter {self.count}>'
 
 @app.get("/")
 def index():
-    return render_template("index.html", counter=counter)
+    return render_template("index.html")
 
 @app.get("/count")
 def get_count():
+    counter = Counter.query.all()
     return jsonify(counter)
 
-@app.route("/count", methods=['POST'])
+@app.route("/count", methods=['PUT'])
 def update_count():
-    return "testing"
+    request_data = request.get_json()
+    print(request_data)
+    count = request_data['count']
+    max_count = request_data['max_count']
 
-@app.route("/reset", methods=['POST'])
+    record_to_update = Counter.query.first()    
+    record_to_update.count = count
+    record_to_update.max_count = max_count
+        
+    db.session.add(record_to_update)
+    db.session.commit()
+
+    return jsonify({"message": "Record updated successfully"}), 200
+
+@app.route("/reset", methods=['PUT'])
 def reset_count():
-    counter["count"] = 0
-    return "testing"
+    record_to_update = Counter.query.first()
+    record_to_update.count = 0
+    record_to_update.max_count = 0
+    db.session.add(record_to_update)
+    db.session.commit()
+
+    return jsonify({"message": "Oh no, the counter has been reset back to 0"}), 200
