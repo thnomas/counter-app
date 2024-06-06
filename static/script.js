@@ -1,11 +1,28 @@
 const counter =  document.getElementById('counter');
 const maxCounter = document.getElementById('maxCounter');
 
-var num = 0; // this should be fetch - initial value from db
-var maxCount = num;
+let num, maxCount;
 
-counter.textContent = num;
-maxCounter.textContent = num;
+async function getCount() {
+    const url = `http://localhost:5000/count`;
+    const response = await fetch(url, { 
+        method: 'GET',   
+    });
+    const data = await response.json();
+    return data;
+}
+
+async function setValues() {
+    const result = await getCount();
+    num = result[0]["count"];
+    maxCount = result[0]["max_count"];
+    document.getElementById('counter').textContent = num;
+    document.getElementById('maxCounter').textContent = maxCount;
+}
+
+window.onload = async () => {
+    await setValues();
+};
 
 function updateDb(num, maxCount){
     const url = `http://localhost:5000/count`;
