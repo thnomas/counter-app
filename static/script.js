@@ -4,7 +4,7 @@ const maxCounter = document.getElementById('maxCounter');
 let num, maxCount;
 
 async function getCount() {
-    const url = `http://localhost:5000/count`;
+    const url = `/count`;
     const response = await fetch(url, { 
         method: 'GET',   
     });
