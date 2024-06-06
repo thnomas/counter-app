@@ -25,7 +25,7 @@ window.onload = async () => {
 };
 
 function updateDb(num, maxCount){
-    const url = `http://localhost:5000/count`;
+    const url = `/count`;
     const data = {
         count: num,
         max_count: maxCount
