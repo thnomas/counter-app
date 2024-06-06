@@ -1,8 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
-counter = {"count": 0, "max_count": 0}
+counter = {"count": 5, "max_count": 7}
 
 @app.get("/")
 def index():
@@ -10,7 +10,7 @@ def index():
 
 @app.get("/count")
 def get_count():
-    return counter
+    return jsonify(counter)
 
 @app.route("/count", methods=['POST'])
 def update_count():

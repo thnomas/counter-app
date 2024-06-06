@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {}
+
+.counter {
+    text-align: center;
+    border-color: #3e8e41;
+
+    padding: 5rem 1rem;
+
+}
+
+.resetCounter {
+    text-align: center;
+    border-color: #3e8e41;
+
+    padding: 5rem 1rem;
+
+}
+
+#maxCounter {
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 20px;
+    color: red;
+}
+
+button,
+h1,
+h2,
+p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button[type="button"] {
+    background-color: #4CAF50;
+}
+
+button:hover {
+    background-color: #45a049;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    background-color: #3e8e41;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(72, 133, 237, 0.5);
+}
+
+h1 {
+    font-size: 7rem;
+
+}
+
+button[type="reset"] {
+    background-color: red;
+}
+
+footer {
+    text-align: center;
+    margin: 100px 0 50px 0;
+}
+
+footer a {
+    text-align: center;
+    font-family: "Viga", sans-serif;
+    text-decoration: underline;
+    color: #333;
+}
+
+footer a:hover {
+    color: rgb(61, 44, 214);
+    text-decoration: none;
+}
+
+footer p {
+    font-weight: 100;
+    font-size: 0.8rem;
+}

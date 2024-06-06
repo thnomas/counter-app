@@ -3,21 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <title>Let's work together to get to 1 billion 🙌</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
+    <div class="container">
+        <div class="counter">
+            <h1 id="counter"></h1>
+        </div>
 
-    <p>Count: {{ counter.count }}</p>
-    <p>Max Count: {{ counter.max_count }}</p>
+        <button type="button" onclick="updateCounter()">Click</button>
 
-    <button>
-        Reset
-    </button>
+        <div class="resetCounter">
+            <h2>Max Count:</h2>
+            <p>i.e. the most clicks before someone hit reset.</p>
+            <h2 id="maxCounter"></h2>
+            <button type="reset" onclick="resetCounter()">Reset</button>
+         </div>
+    </div>
 
+    <footer>
+        <a href="https://github.com/thnomas">GITHUB</a>
+        <p>NEVER STOP LEARNING</p>
+    </footer>
 
-    <script>
-        
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 </html>
