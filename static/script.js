@@ -6,7 +6,10 @@ let num, maxCount;
 async function getCount() {
     const url = `/count`;
     const response = await fetch(url, { 
-        method: 'GET',   
+        method: 'GET',
+        headers: {
+            'API-Key': '2dcb5fcef03f8814810fde079fda8bd5'
+        }   
     });
     const data = await response.json();
     return data;
@@ -23,6 +26,8 @@ async function setValues() {
 window.onload = async () => {
     await setValues();
 };
+
+
 
 function updateDb(num, maxCount){
     const url = `/count`;
