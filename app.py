@@ -45,13 +45,3 @@ def update_count():
     db.session.commit()
 
     return jsonify({"message": "Record updated successfully"}), 200
-
-@app.route("/reset", methods=['PUT'])
-def reset_count():
-    record_to_update = Counter.query.first()
-    record_to_update.count = 0
-    record_to_update.max_count = 0
-    db.session.add(record_to_update)
-    db.session.commit()
-
-    return jsonify({"message": "Oh no, the counter has been reset back to 0"}), 200
